@@ -46,7 +46,12 @@
 	<v-dialog width="540" v-model="deleteDialog">
 		<AddressDelete :id="address.id" @close="closeDeleteDialog" />
 	</v-dialog>
-	<v-snackbar class="error-snackbar" v-model="snackbar" color="red-accent-2" :timeout="1400">
+	<v-snackbar
+		class="error-snackbar"
+		v-model="snackbar"
+		color="red-accent-2"
+		:timeout="1400"
+	>
 		{{ $t("invalidFields") }}
 	</v-snackbar>
 </template>
@@ -140,7 +145,7 @@ export default {
 				getCep(value).then((response) => {
 					const data = response.data;
 
-					this.found = !!data;
+					this.found = !data.erro;
 
 					this.address.logradouro = data.logradouro;
 					this.address.complemento = data.complemento;
