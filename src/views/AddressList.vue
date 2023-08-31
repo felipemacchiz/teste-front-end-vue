@@ -104,6 +104,8 @@ export default {
 			this.dialog = true;
 		},
 		closeDialog() {
+			this.cep = "";
+			this.$store.dispatch("getAddresses");
 			this.dialog = false;
 		},
 	},

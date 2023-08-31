@@ -1,4 +1,6 @@
 export default {
+	portuguese: "Português",
+	english: "Inglês",
 	mainTitle: "Meus endereços",
 	title: "Seus endereços em um só lugar",
 	inputFieldPlaceholder: "Digite seu CEP",

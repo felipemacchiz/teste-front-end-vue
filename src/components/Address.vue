@@ -1,5 +1,5 @@
 <template>
-	<v-card>
+	<v-card v-if="address" max-width="960" class="w-100 mx-auto">
 		<v-container>
 			<address-fields
 				:address="address"
@@ -18,6 +18,7 @@
 					@click="this.$emit('close')"
 				/>
 				<v-btn
+					v-if="address.id"
 					color="red-accent-2"
 					prepend-icon="mdi-trash-can"
 					width="144"
@@ -40,7 +41,7 @@
 			</v-card-actions>
 		</v-container>
 	</v-card>
-	<v-dialog width="520" v-model="deleteDialog">
+	<v-dialog width="540" v-model="deleteDialog">
 		<AddressDelete :id="address.id" />
 	</v-dialog>
 </template>
@@ -74,12 +75,16 @@ export default {
 				});
 			} else if (this.cep) {
 				this.address = {
+					name: "",
 					cep: this.cep,
 				};
 
 				this.searchCep();
 			} else {
-				this.address = {};
+				this.address = {
+					name: "",
+					cep: "",
+				};
 			}
 		},
 		validate() {

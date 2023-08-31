@@ -28,7 +28,7 @@
 	<v-dialog v-model="editDialog">
 		<Address :id="address.id" @close="closeEditDialog" />
 	</v-dialog>
-	<v-dialog width="520" v-model="deleteDialog">
+	<v-dialog width="540" v-model="deleteDialog">
 		<AddressDelete :id="address.id" @close="closeDeleteDialog" />
 	</v-dialog>
 </template>
