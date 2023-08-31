@@ -23,4 +23,5 @@ export default {
 	buttonSave: "Salvar",
 	deleteDialogTitle: "Você tem certeza que quer remover este endereço?",
 	deleteDialogSubtitle: "Esta ação não pode ser desfeita",
+	invalidFields: "Campos incorretos",
 };

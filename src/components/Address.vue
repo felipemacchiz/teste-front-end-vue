@@ -1,55 +1,61 @@
 <template>
 	<v-card v-if="address" max-width="960" class="w-100 mx-auto">
-		<v-container>
-			<address-fields
-				:address="address"
-				:searchCep="searchCep"
-				:found="found"
-			></address-fields>
-			<v-card-actions class="flex-column flex-sm-row justify-end">
-				<v-btn
-					color="grey-darken-1"
-					width="144"
-					height="48"
-					prepend-icon="mdi-close"
-					variant="text"
-					:text="$t('buttonCancel')"
-					rounded
-					@click="this.$emit('close')"
-				/>
-				<v-btn
-					v-if="address.id"
-					color="red-accent-2"
-					prepend-icon="mdi-trash-can"
-					width="144"
-					height="48"
-					variant="text"
-					:text="$t('buttonDelete')"
-					rounded
-					@click="handleDelete"
-				/>
-				<v-btn
-					color="teal"
-					prepend-icon="mdi-check"
-					width="144"
-					height="48"
-					:text="$t('buttonSave')"
-					variant="elevated"
-					rounded
-					@click="handleSave"
-				/>
-			</v-card-actions>
-		</v-container>
+		<v-form @submit.prevent="handleSave">
+			<v-container>
+				<address-fields
+					:address="address"
+					:searchCep="searchCep"
+					:found="found"
+				></address-fields>
+				<v-card-actions class="flex-column flex-sm-row justify-end">
+					<v-btn
+						color="grey-darken-1"
+						width="144"
+						height="48"
+						prepend-icon="mdi-close"
+						variant="text"
+						:text="$t('buttonCancel')"
+						rounded
+						@click="this.$emit('close')"
+					/>
+					<v-btn
+						v-if="address.id"
+						color="red-accent-2"
+						prepend-icon="mdi-trash-can"
+						width="144"
+						height="48"
+						variant="text"
+						:text="$t('buttonDelete')"
+						rounded
+						@click="handleDelete"
+					/>
+					<v-btn
+						type="submit"
+						color="teal"
+						prepend-icon="mdi-check"
+						width="144"
+						height="48"
+						:text="$t('buttonSave')"
+						variant="elevated"
+						rounded
+					/>
+				</v-card-actions>
+			</v-container>
+		</v-form>
 	</v-card>
 	<v-dialog width="540" v-model="deleteDialog">
 		<AddressDelete :id="address.id" @close="closeDeleteDialog" />
 	</v-dialog>
+	<v-snackbar class="error-snackbar" v-model="snackbar" color="red-accent-2" :timeout="1400">
+		{{ $t("invalidFields") }}
+	</v-snackbar>
 </template>
 
 <script>
 import { api, getCep } from "@/services";
 import AddressFields from "@/components/AddressFields.vue";
 import AddressDelete from "./AddressDelete.vue";
+import { th } from "vuetify/lib/locale/index.mjs";
 
 export default {
 	name: "Address",
@@ -62,6 +68,7 @@ export default {
 		return {
 			address: null,
 			found: false,
+			snackbar: false,
 			deleteDialog: false,
 		};
 	},
@@ -88,8 +95,10 @@ export default {
 			}
 		},
 		validate() {
-			if (!this.address.name?.length) return false;
-			if (!this.found) return false;
+			if (!this.address.name?.length || !this.found) {
+				this.snackbar = true;
+				return false;
+			}
 
 			this.address.cep = this.address.cep.replace(/\D/g, "");
 			this.address.modifiedAt = new Date().toISOString();
