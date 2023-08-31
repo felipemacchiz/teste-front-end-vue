@@ -1,6 +1,7 @@
+import { pt } from "vuetify/locale";
+
 export default {
-	portuguese: "Português",
-	english: "Inglês",
+	$vuetify: { ...pt },
 	mainTitle: "Meus endereços",
 	title: "Seus endereços em um só lugar",
 	inputFieldPlaceholder: "Digite seu CEP",

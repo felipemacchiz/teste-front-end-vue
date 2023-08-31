@@ -1,5 +1,5 @@
 <template>
-	<v-responsive max-width="480" class="mx-auto mb-8">
+	<v-responsive max-width="480" class="mx-auto mb-4">
 		<v-container>
 			<v-row justify="center" class="mb-3">
 				<h2 class="text-center">
@@ -28,6 +28,20 @@
 		</v-container>
 	</v-responsive>
 	<v-responsive max-width="580" class="mx-auto">
+		<v-container class="mb-8">
+			<v-row justify="center">
+				<v-btn
+					size="large"
+					color="teal"
+					width="320"
+					height="48"
+					rounded="xl"
+					prepend-icon="mdi-plus-circle"
+					:text="$t('buttonAddAddress')"
+					@click="addressCreate"
+				/>
+			</v-row>
+		</v-container>
 		<v-container v-if="addresses?.length">
 			<div
 				v-for="(addressItem, index) in addresses"
@@ -44,18 +58,6 @@
 					color="transparent"
 					class="text-orange-darken-2"
 					icon="$warning"
-				/>
-			</v-row>
-			<v-row justify="center">
-				<v-btn
-					size="large"
-					color="teal"
-					width="320"
-					height="48"
-					rounded="xl"
-					prepend-icon="mdi-plus-circle"
-					:text="$t('buttonAddAddress')"
-					@click="addressCreate"
 				/>
 			</v-row>
 		</v-container>

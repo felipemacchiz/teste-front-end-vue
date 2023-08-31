@@ -1,6 +1,7 @@
+import { en } from "vuetify/locale";
+
 export default {
-	portuguese: "Portuguese",
-	english: "English",
+	$vuetify: { ...en },
 	mainTitle: "My addresses",
 	title: "Your addresses in one place",
 	inputFieldPlaceholder: "Type your zip code",

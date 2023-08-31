@@ -34,11 +34,11 @@ export default {
 			languages: [
 				{
 					name: "ptBr",
-					label: this.$t("portuguese"),
+					label: "Português",
 				},
 				{
 					name: "en",
-					label: this.$t("english"),
+					label: "English",
 				},
 			],
 		};
