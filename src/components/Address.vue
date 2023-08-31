@@ -42,7 +42,7 @@
 		</v-container>
 	</v-card>
 	<v-dialog width="540" v-model="deleteDialog">
-		<AddressDelete :id="address.id" />
+		<AddressDelete :id="address.id" @close="closeDeleteDialog" />
 	</v-dialog>
 </template>
 
@@ -152,6 +152,9 @@ export default {
 			if (value.length > 5)
 				this.address.cep = `${value?.slice(0, 5)}-${value?.slice(5)}`;
 			else this.address.cep = value;
+		},
+		closeDeleteDialog() {
+			this.deleteDialog = false;
 		},
 	},
 	created() {

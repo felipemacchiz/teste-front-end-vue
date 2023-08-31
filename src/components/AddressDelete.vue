@@ -40,7 +40,6 @@ export default {
 	name: "AddressDelete",
 	props: ["id"],
 	methods: {
-		closeDialog() {},
 		deleteAddress() {
 			api.delete(`/address/${this.id}`).then(() => {
 				this.$store.dispatch("getAddresses");
