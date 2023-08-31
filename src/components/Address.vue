@@ -60,7 +60,6 @@
 import { api, getCep } from "@/services";
 import AddressFields from "@/components/AddressFields.vue";
 import AddressDelete from "./AddressDelete.vue";
-import { th } from "vuetify/lib/locale/index.mjs";
 
 export default {
 	name: "Address",
@@ -104,6 +103,12 @@ export default {
 				this.snackbar = true;
 				return false;
 			}
+
+			delete this.address.logradouro;
+			delete this.address.complemento;
+			delete this.address.bairro;
+			delete this.address.localidade;
+			delete this.address.uf;
 
 			this.address.cep = this.address.cep.replace(/\D/g, "");
 			this.address.modifiedAt = new Date().toISOString();
