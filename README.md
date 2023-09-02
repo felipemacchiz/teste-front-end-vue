@@ -44,5 +44,5 @@ Para pré-vizualizar a aplicação, utilize o comando:
 npm run preview
 ```
 
-Executando o script você poderá acessar a aplcaçaõ em `http://localhost:4173`.
+Executando o script você poderá acessar a aplicação em `http://localhost:4173`.
 
